@@ -49,7 +49,7 @@ function App() {
       onChange={e => setNamaBuah(e.target.value)} />
       <input value={harga} 
       placeholder='Masukkan Harga Buah' onChange={(e) => setHarga(e.target.value)} />
-      {showError ? renderAlert() : null}
+      {showError ? nullBuah() : null}
       <div> <button onClick={handleSubmit}>
         {editBuahId ? 'Update' : 'Submit'}</button>
       </div>
@@ -67,12 +67,24 @@ function App() {
     setBuah([...buah, newBuah]),
     setHarga('')
     setNamaBuah('')
+    setShowError(false);
   }
 
   const deleteBuah = (id) => {
     const newBuah = buah.filter((item) => item.id !== id)
     setBuah(newBuah)
   }
+  const nullBuah = () => (
+    <div style={styles.alert}>Nama buah kosong</div>
+  );
+  const styles = {
+    alert: {
+      backgroundColor: 'red',
+      color: 'white',
+      padding: '10px',
+      marginBottom: '10px',
+    },
+  };
 
   const updateBuah = (id) => {
     const newBuahs = buah.map((buah) => 
@@ -82,6 +94,7 @@ function App() {
     setEditBuahId(null)
     setNamaBuah('')
     setHarga('')
+    setShowError(false);
   }
 
   const handleEdit = (buah) => {
