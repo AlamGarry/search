@@ -5,6 +5,7 @@ function App() {
   const [namaBuah, setNamaBuah] = useState('')
   const [editBuahId, setEditBuahId] = useState(null)
   const [showError, setShowError] = useState(false)
+  const [searchNama, setSearchNama] = useState('');
   const [buahForm, setBuahForm] = useState(true)
   const [buah, setBuah] = useState([
     {
@@ -90,6 +91,12 @@ function App() {
     setHarga(buah.harga)
   }
 
+  const searchBuah = buah.filter((buah) =>
+    buah.nama.toLowerCase().includes(searchNama.toLowerCase())
+  );
+  const handleSearch = (event) => {
+    setSearchNama(event.target.value.toLowerCase()); 
+  };
 
   return(
     <div>
@@ -107,6 +114,21 @@ function App() {
           </div>
         ))}
       </p>
+      <input
+        type="search"
+        placeholder="Search for items"
+        onChange={handleSearch}
+      />
+      <ul>
+        {searchBuah.length > 0 ? (
+          searchBuah.map((item) => (
+            <li key={item.id}>
+            {item.nama} - {item.harga}</li>
+          ))
+        ) : (
+          <li>No results found</li>
+        )}
+      </ul>
     </div>
     
   )
