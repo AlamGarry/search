@@ -77,14 +77,7 @@ function App() {
   const nullBuah = () => (
     <div style={styles.alert}>Nama buah kosong</div>
   );
-  const styles = {
-    alert: {
-      backgroundColor: 'red',
-      color: 'white',
-      padding: '10px',
-      marginBottom: '10px',
-    },
-  };
+  
 
   const updateBuah = (id) => {
     const newBuahs = buah.map((buah) => 
@@ -115,9 +108,7 @@ function App() {
     <div>
       <h1>Daftar Buah</h1>
       {buahForm ? formBuah() : <p>Sudah ditambahkan</p>}
-      
-      {/* tampilin buah dan harga */}
-      <p>
+      <div>
         {buah.map((item) => (
           <div key={item.id}>
             {item.nama} - {item.harga}
@@ -126,7 +117,7 @@ function App() {
             {}
           </div>
         ))}
-      </p>
+      </div>
       <input
         type="search"
         placeholder="Search for items"
@@ -146,5 +137,12 @@ function App() {
     
   )
 }
-
+const styles = {
+  alert: {
+    backgroundColor: 'red',
+    color: 'white',
+    padding: '10px',
+    marginBottom: '10px',
+  },
+};
 export default App
